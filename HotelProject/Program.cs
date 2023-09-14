@@ -46,6 +46,12 @@ namespace HotelProject
                     pattern: "hotel/{action=Index}/{id?}",
                     defaults: new { controller = "Hotel" }
                 );
+
+                endpoints.MapControllerRoute(
+                    name: "recommendation",
+                    pattern: "recommendation/{action=Index}/{id?}",
+                    defaults: new { controller = "Recommendation" }
+                );
             });
 
             app.Run();

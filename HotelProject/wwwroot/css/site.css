@@ -16,3 +16,19 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+th {
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+tr {
+    border-bottom: 1px solid #ccc; 
+}
+
+.form-group {
+    padding: 10px;
+}

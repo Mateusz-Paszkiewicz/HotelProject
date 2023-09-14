@@ -2,14 +2,16 @@
 using HotelProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProject.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230913221828_addStarsToHotelSchema")]
+    partial class addStarsToHotelSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +71,7 @@ namespace HotelProject.Migrations
                     b.Property<int>("Rooms")
                         .HasColumnType("int");
 
-                    b.Property<int>("Stars")
+                    b.Property<int>("start")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

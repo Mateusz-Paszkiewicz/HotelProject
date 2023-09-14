@@ -15,6 +15,7 @@ namespace HotelProject.Models
         public string Address { get; set; }
         [Required]
         public decimal Price { get; set; }
+        public int Stars { get; set; }
         [Required]
         public int Rooms { get; set; }
         [Required]

@@ -8,20 +8,43 @@
 
 <h1>Hotels</h1>
 
-<table class="table">
+<table>
     <thead>
         <tr>
-            <th>ID</th>
             <th>Name</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Price</th>
+            <th>Stars</th>
+            <th>Rooms</th>
+            <th>CheckInTime</th>
+            <th>CheckOutTime</th>
+            <th>Amenities</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Rating</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var hotel in Model)
         {
             <tr>
-                <td>@hotel.Id</td>
                 <td>@hotel.Name</td>
+                <td>@hotel.Country</td>
+                <td>@hotel.City</td>
+                <td>@hotel.Address</td>
+                <td>@hotel.Price</td>
+                <td>@hotel.Stars</td>
+                <td>@hotel.Rooms</td>
+                <td>@hotel.CheckInTime</td>
+                <td>@hotel.CheckOutTime</td>
+                <td>@hotel.Amenities</td>
+                <td>@hotel.Latitude</td>
+                <td>@hotel.Longitude</td>
+                <td>@hotel.Rating</td>
             </tr>
         }
     </tbody>
 </table>
+
