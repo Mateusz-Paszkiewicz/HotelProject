@@ -1,0 +1,58 @@
+﻿@model HotelProject.Models.Hotel
+
+<h1>Hotel Details</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>Name:</dt>
+            <dd>@Model.Name</dd>
+
+            <dt>Country:</dt>
+            <dd>@Model.Country</dd>
+
+            <dt>City:</dt>
+            <dd>@Model.City</dd>
+
+            <dt>Address:</dt>
+            <dd>@Model.Address</dd>
+
+            <dt>Price:</dt>
+            <dd>@Model.Price</dd>
+
+            <dt>Stars:</dt>
+            <dd>@Model.Stars</dd>
+
+            <dt>Rooms:</dt>
+            <dd>@Model.Rooms</dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>Check-In Time:</dt>
+            <dd>@Model.CheckInTime</dd>
+
+            <dt>Check-Out Time:</dt>
+            <dd>@Model.CheckOutTime</dd>
+
+            <dt>Description:</dt>
+            <dd>@Model.Description</dd>
+
+            <dt>Amenities:</dt>
+            <dd>@Model.Amenities</dd>
+
+            <dt>Latitude:</dt>
+            <dd>@Model.Latitude</dd>
+
+            <dt>Longitude:</dt>
+            <dd>@Model.Longitude</dd>
+
+            <dt>Rating:</dt>
+            <dd>@Model.Rating</dd>
+        </dl>
+    </div>
+</div>
+
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

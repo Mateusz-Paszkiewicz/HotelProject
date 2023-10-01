@@ -1,5 +1,8 @@
+using HotelProject.Factory;
 using HotelProject.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 
 namespace HotelProject
@@ -18,6 +21,24 @@ namespace HotelProject
                 options.UseMySQL("server=127.0.0.1;database=hoteldb;uid=root;pwd=root");
             });
 
+            builder.Services.AddDbContext<UserDbContext>(options =>
+            {
+                options.UseMySQL("server=127.0.0.1;database=hoteldb;uid=root;pwd=root");
+            });
+
+            builder.Services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
+
+            builder.Services.AddIdentity<User, IdentityRole>(opt =>
+            {
+                opt.Password.RequiredLength = 5;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireUppercase = false;
+                opt.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<UserDbContext>();
+
+            builder.Services.AddAutoMapper(typeof(Program));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -33,6 +54,7 @@ namespace HotelProject
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -45,12 +67,6 @@ namespace HotelProject
                     name: "hotel",
                     pattern: "hotel/{action=Index}/{id?}",
                     defaults: new { controller = "Hotel" }
-                );
-
-                endpoints.MapControllerRoute(
-                    name: "recommendation",
-                    pattern: "recommendation/{action=Index}/{id?}",
-                    defaults: new { controller = "Recommendation" }
                 );
             });
 
