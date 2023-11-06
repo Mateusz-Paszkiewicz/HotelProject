@@ -5,8 +5,8 @@
 <div class="row">
     <div class="col-md-6">
         <dl class="dl-horizontal">
-            <dt>Name:</dt>
-            <dd>@Model.Name</dd>
+            <dt>Id:</dt>
+            <dd>@Model.Id</dd>
 
             <dt>Country:</dt>
             <dd>@Model.Country</dd>
@@ -14,45 +14,43 @@
             <dt>City:</dt>
             <dd>@Model.City</dd>
 
-            <dt>Address:</dt>
-            <dd>@Model.Address</dd>
+            <dt>Distance To Center:</dt>
+            <dd>@Model.DistanceToCenter</dd>
+
+            <dt>Distance to point of interest:</dt>
+            <dd>@Model.DistanceToPOI</dd>
+
+            <dt>Point of interest:</dt>
+            <dd>@Model.POI</dd>
 
             <dt>Price:</dt>
             <dd>@Model.Price</dd>
-
-            <dt>Stars:</dt>
-            <dd>@Model.Stars</dd>
-
-            <dt>Rooms:</dt>
-            <dd>@Model.Rooms</dd>
         </dl>
     </div>
     <div class="col-md-6">
         <dl class="dl-horizontal">
-            <dt>Check-In Time:</dt>
-            <dd>@Model.CheckInTime</dd>
+            <dt>Price Per Night:</dt>
+            <dd>@Model.PriceNight</dd>
 
-            <dt>Check-Out Time:</dt>
-            <dd>@Model.CheckOutTime</dd>
+            <dt>Stars:</dt>
+            <dd>@Model.Stars</dd>
 
-            <dt>Description:</dt>
-            <dd>@Model.Description</dd>
+            <dt>Accommodation Type:</dt>
+            <dd>@Model.AccommodationType</dd>
 
-            <dt>Amenities:</dt>
-            <dd>@Model.Amenities</dd>
+            <dt>Is Offer:</dt>
+            <dd>@Model.IsOffer</dd>
 
-            <dt>Latitude:</dt>
-            <dd>@Model.Latitude</dd>
-
-            <dt>Longitude:</dt>
-            <dd>@Model.Longitude</dd>
-
-            <dt>Rating:</dt>
-            <dd>@Model.Rating</dd>
+            <dt>Offer:</dt>
+            <dd>@Model.Offer</dd>
         </dl>
     </div>
 </div>
 
-<p>
+<div>
+    @Html.Partial("_HotelRatingPartial", new { Id = Model.Id })
+</div>
+
+<p style="margin-top: 20px;">
     <a asp-action="Index">Back to List</a>
 </p>

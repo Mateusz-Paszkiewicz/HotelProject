@@ -1,18 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Drawing.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelProject.Models
 {
-    public class UserHotelInteraction
+    [Table("HotelRatings")]
+    public class HotelRating
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public int HotelId { get;  set; }
+        public int HotelId { get; set; }
         [Required]
         public string UserId { get; set; }
         [Required]
-        public DateTime TimeStamp { get; set; }
+        public int RatingValue { get; set; }
 
         public Hotel Hotel { get; set; }
         public User User { get; set; }

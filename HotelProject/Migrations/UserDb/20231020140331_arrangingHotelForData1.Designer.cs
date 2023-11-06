@@ -3,14 +3,16 @@ using System;
 using HotelProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProject.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231020140331_arrangingHotelForData1")]
+    partial class arrangingHotelForData1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,44 +24,6 @@ namespace HotelProject.Migrations.UserDb
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("AccommodationType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("DistanceToCenter")
-                        .HasColumnType("double");
-
-                    b.Property<double>("DistanceToPOI")
-                        .HasColumnType("double");
-
-                    b.Property<bool>("IsOffer")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Offer")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("POI")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PriceNight")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Stars")
-                        .HasColumnType("double");
 
                     b.HasKey("Id");
 
@@ -218,15 +182,15 @@ namespace HotelProject.Migrations.UserDb
                     b.HasData(
                         new
                         {
-                            Id = "f98b0253-4121-4fe1-8f77-3c5b15a21fed",
-                            ConcurrencyStamp = "6b44c348-a9b9-454c-8262-da8a66216761",
+                            Id = "e83b4cb8-d78f-4207-aee8-6d6b6cfe9037",
+                            ConcurrencyStamp = "0b2e7600-a43f-4863-bba1-1dac4d04f0a7",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4f0acb9b-33fd-467e-8dd3-64a78363bfa6",
-                            ConcurrencyStamp = "3c868dc2-5de2-46a0-93d9-2ab4d98ff43d",
+                            Id = "f446e05b-110e-4c81-adbb-f714b513dfe2",
+                            ConcurrencyStamp = "baa3d6b5-d199-47ad-bbc8-ae171622bc92",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

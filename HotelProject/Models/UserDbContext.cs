@@ -9,6 +9,9 @@ namespace HotelProject.Models
     public class UserDbContext : IdentityDbContext<User>
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<UserHotelInteraction> UserHotelInteractions { get; set; }
+        public DbSet<HotelRating> HotelRatings { get; set; }
 
         public UserDbContext(DbContextOptions options)
         : base(options)
@@ -29,6 +32,30 @@ namespace HotelProject.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<UserHotelInteraction>()
+                .HasKey(uhi => uhi.Id);
+            modelBuilder.Entity<UserHotelInteraction>()
+                .HasOne(uhi => uhi.Hotel)
+                .WithMany()
+                .HasForeignKey(uhi => uhi.HotelId);
+            modelBuilder.Entity<UserHotelInteraction>()
+                .HasOne(uhi => uhi.User)
+                .WithMany()
+                .HasForeignKey(uhi => uhi.UserId);
+
+
+            modelBuilder.Entity<HotelRating>()
+                .HasKey(uhi => uhi.Id);
+            modelBuilder.Entity<HotelRating>()
+                .HasOne(uhi => uhi.Hotel)
+                .WithMany()
+                .HasForeignKey(uhi => uhi.HotelId);
+            modelBuilder.Entity<HotelRating>()
+                .HasOne(uhi => uhi.User)
+                .WithMany()
+                .HasForeignKey(uhi => uhi.UserId);
+
 
             modelBuilder.Entity<User>(entity => entity.Property(m => m.Id).HasMaxLength(85));
             modelBuilder.Entity<User>(entity => entity.Property(m => m.NormalizedEmail).HasMaxLength(85));

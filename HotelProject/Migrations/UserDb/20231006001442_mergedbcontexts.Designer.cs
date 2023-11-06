@@ -3,93 +3,21 @@ using System;
 using HotelProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProject.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231006001442_mergedbcontexts")]
+    partial class mergedbcontexts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.17");
-
-            modelBuilder.Entity("HotelProject.Models.Hotel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("AccommodationType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("DistanceToCenter")
-                        .HasColumnType("double");
-
-                    b.Property<double>("DistanceToPOI")
-                        .HasColumnType("double");
-
-                    b.Property<bool>("IsOffer")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Offer")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("POI")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PriceNight")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Stars")
-                        .HasColumnType("double");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Hotels");
-                });
-
-            modelBuilder.Entity("HotelProject.Models.HotelRating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RatingValue")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(85)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("HotelRatings");
-                });
 
             modelBuilder.Entity("HotelProject.Models.User", b =>
                 {
@@ -164,31 +92,6 @@ namespace HotelProject.Migrations.UserDb
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("HotelProject.Models.UserHotelInteraction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(85)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserHotelInteractions");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -218,15 +121,15 @@ namespace HotelProject.Migrations.UserDb
                     b.HasData(
                         new
                         {
-                            Id = "f98b0253-4121-4fe1-8f77-3c5b15a21fed",
-                            ConcurrencyStamp = "6b44c348-a9b9-454c-8262-da8a66216761",
+                            Id = "784734c0-03f2-40f5-a62f-3617c15037ed",
+                            ConcurrencyStamp = "fa96e760-2c35-49b0-9461-a4d09ae36de9",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4f0acb9b-33fd-467e-8dd3-64a78363bfa6",
-                            ConcurrencyStamp = "3c868dc2-5de2-46a0-93d9-2ab4d98ff43d",
+                            Id = "f2be4083-51be-4af8-bd63-dd6bc9eed03b",
+                            ConcurrencyStamp = "02ea256e-3d4f-46aa-ae6e-24482cbe710f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -344,44 +247,6 @@ namespace HotelProject.Migrations.UserDb
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("HotelProject.Models.HotelRating", b =>
-                {
-                    b.HasOne("HotelProject.Models.Hotel", "Hotel")
-                        .WithMany()
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HotelProject.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hotel");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("HotelProject.Models.UserHotelInteraction", b =>
-                {
-                    b.HasOne("HotelProject.Models.Hotel", "Hotel")
-                        .WithMany()
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HotelProject.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hotel");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

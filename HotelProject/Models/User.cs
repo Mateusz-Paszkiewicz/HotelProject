@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace HotelProject.Models
 {
-    [Table("Users")]
     public class User : IdentityUser
     {
         [Required]

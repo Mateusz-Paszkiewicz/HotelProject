@@ -3,14 +3,16 @@ using System;
 using HotelProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProject.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231020140400_arrangingHotelForData2")]
+    partial class arrangingHotelForData2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,11 +37,11 @@ namespace HotelProject.Migrations.UserDb
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("DistanceToCenter")
-                        .HasColumnType("double");
+                    b.Property<float>("DistanceToCenter")
+                        .HasColumnType("float");
 
-                    b.Property<double>("DistanceToPOI")
-                        .HasColumnType("double");
+                    b.Property<float>("DistanceToPOI")
+                        .HasColumnType("float");
 
                     b.Property<bool>("IsOffer")
                         .HasColumnType("tinyint(1)");
@@ -58,8 +60,8 @@ namespace HotelProject.Migrations.UserDb
                     b.Property<int>("PriceNight")
                         .HasColumnType("int");
 
-                    b.Property<double>("Stars")
-                        .HasColumnType("double");
+                    b.Property<float>("Stars")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -218,15 +220,15 @@ namespace HotelProject.Migrations.UserDb
                     b.HasData(
                         new
                         {
-                            Id = "f98b0253-4121-4fe1-8f77-3c5b15a21fed",
-                            ConcurrencyStamp = "6b44c348-a9b9-454c-8262-da8a66216761",
+                            Id = "64c5690b-dfe7-48bc-8fa2-3db5acc95c4a",
+                            ConcurrencyStamp = "79ca9189-6550-4f74-9773-f31f6e9c6e59",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4f0acb9b-33fd-467e-8dd3-64a78363bfa6",
-                            ConcurrencyStamp = "3c868dc2-5de2-46a0-93d9-2ab4d98ff43d",
+                            Id = "2d798eb7-00a7-4f82-b7db-cbebae602cb0",
+                            ConcurrencyStamp = "30216189-55b3-4c35-8b3f-e0fde8bbd309",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

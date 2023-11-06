@@ -3,14 +3,16 @@ using System;
 using HotelProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelProject.Migrations.UserDb
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009201003_addingHotelRatings")]
+    partial class addingHotelRatings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,7 +25,19 @@ namespace HotelProject.Migrations.UserDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AccommodationType")
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Amenities")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CheckInTime")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CheckOutTime")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -35,31 +49,31 @@ namespace HotelProject.Migrations.UserDb
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("DistanceToCenter")
-                        .HasColumnType("double");
-
-                    b.Property<double>("DistanceToPOI")
-                        .HasColumnType("double");
-
-                    b.Property<bool>("IsOffer")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Offer")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("POI")
+                    b.Property<double>("Latitude")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("double");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Price")
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("PriceNight")
+                    b.Property<int>("Rooms")
                         .HasColumnType("int");
 
-                    b.Property<double>("Stars")
-                        .HasColumnType("double");
+                    b.Property<int>("Stars")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -218,15 +232,15 @@ namespace HotelProject.Migrations.UserDb
                     b.HasData(
                         new
                         {
-                            Id = "f98b0253-4121-4fe1-8f77-3c5b15a21fed",
-                            ConcurrencyStamp = "6b44c348-a9b9-454c-8262-da8a66216761",
+                            Id = "5f2cf459-3fde-41fc-95a2-5b72710cd2cc",
+                            ConcurrencyStamp = "1418537d-77b6-49b1-a89d-1a6ac99384a9",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4f0acb9b-33fd-467e-8dd3-64a78363bfa6",
-                            ConcurrencyStamp = "3c868dc2-5de2-46a0-93d9-2ab4d98ff43d",
+                            Id = "d4ba1761-971e-4608-b47a-1bb5ed25271c",
+                            ConcurrencyStamp = "8bf2802c-4a2c-4145-aa7e-cb37982cdf88",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

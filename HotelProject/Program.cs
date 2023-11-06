@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
+using Microsoft.ML.Data;
+using Microsoft.Extensions.ML;
+using HotelRecommender;
 
 namespace HotelProject
 {
@@ -13,13 +16,7 @@ namespace HotelProject
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            builder.Services.AddDbContext<HotelDbContext>(options =>
-            {
-                options.UseMySQL("server=127.0.0.1;database=hoteldb;uid=root;pwd=root");
-            });
 
             builder.Services.AddDbContext<UserDbContext>(options =>
             {

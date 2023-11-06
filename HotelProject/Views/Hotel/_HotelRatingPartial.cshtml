@@ -1,0 +1,46 @@
+﻿@model dynamic
+
+@{
+    var hotelId = Model.Id;
+}
+
+<label for="rating"><b>Your rating:</b></label>
+<form class="star-rating-form">
+    @for (int i = 1; i <= 10; i++)
+    {
+        <img src="~/images/emptyStar.png" alt="Star" class="star" data-rating="@i" />
+    }
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('.star-rating-form').on('click', '.star', function () {
+            var ratingValue = $(this).data('rating');
+            console.log(ratingValue);
+
+            $('.star-rating-form').empty();
+
+            for (var i = 1; i <= ratingValue; i++) {
+                $('.star-rating-form').append('<img src="/images/fullStar.png" alt="Full Star" class="star" data-rating="' + i + '" />');
+            }
+
+            for (var i = ratingValue + 1; i <= 10; i++) {
+                $('.star-rating-form').append('<img src="/images/emptyStar.png" alt="Empty Star" class="star" data-rating="' + i + '" />');
+            }
+
+            $('input[name="rating"]').val(ratingValue);
+
+            $.ajax({
+                url: '/Hotel/Rate',
+                type: 'POST',
+                data: { hotelId: @hotelId, rating: ratingValue },
+                success: function (data) {
+                    $("#successMessage").text("Rating updated successfully").show();
+                },
+                //error: function (xhr, textStatus, errorThrown) {
+
+                //}
+            });
+        });
+    });
+</script>
