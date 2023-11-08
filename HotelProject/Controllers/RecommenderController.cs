@@ -22,19 +22,22 @@ namespace HotelProject.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            _context.Users.OrderBy(h => h.Id).ToList();
-
             return View();
         }
 
         [Authorize]
-        [HttpGet]
-        public IActionResult Predict()
+        [HttpPost]
+        public IActionResult ProcessHotelPreferences(HotelPreferencesViewModel model)
         {
+            return RedirectToAction("Predict", model);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Predict(HotelPreferencesViewModel model)
+        { 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             var hotels = _context.Hotels.OrderBy(h => h.Id).ToList();
-
             var hotelRatings = new List<(Hotel Hotel, float PredictedRating)>();
 
             foreach (var h in hotels)
@@ -50,7 +53,7 @@ namespace HotelProject.Controllers
                 hotelRatings.Add((h, result.Score));
             }
 
-            var topRecommendedHotels = hotelRatings.OrderByDescending(r => r.PredictedRating).Take(5).ToList();
+            var topRecommendedHotels = hotelRatings.OrderByDescending(r => r.PredictedRating).Take(30).ToList();
 
             return View(topRecommendedHotels);
         }
