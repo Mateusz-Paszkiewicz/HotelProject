@@ -1,4 +1,4 @@
-﻿@model List<(Hotel Hotel, float PredictedRating)>
+﻿@model List<(Hotel Hotel, double HotelRating)>
 
 <h1>We have found these hotels, just for you!</h1>
 
@@ -36,7 +36,7 @@
                 <td>@item.Hotel.AccommodationType</td>
                 <td>@(item.Hotel.IsOffer ? "Yes" : "No")</td>
                 <td>@item.Hotel.Offer</td>
-                <td>@item.PredictedRating</td>
+                <td>@item.HotelRating</td>
             </tr>
         }
     </tbody>

@@ -9,11 +9,13 @@ namespace HotelProject.Controllers
 {
     public class AccountController : Controller
     {
+        private UserDbContext _context;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountController(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, UserDbContext context)
         {
+            _context = context;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
@@ -61,7 +63,13 @@ namespace HotelProject.Controllers
             {
                 return View(userModel);
             }
-            var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, false);
+
+            // THIS IS A WORKAROUND
+            var user = _context.Users.FirstOrDefault(h => h.Id == "");
+
+            //var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, false);
+            await _signInManager.SignInAsync(user, false, null);
+
             if (result.Succeeded)
             {
                 if (string.IsNullOrEmpty(returnUrl))

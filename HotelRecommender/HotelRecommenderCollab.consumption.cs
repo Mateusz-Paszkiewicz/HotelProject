@@ -56,7 +56,7 @@ namespace HotelRecommender
 
         #endregion
 
-        private static string MLNetModelPath = Path.GetFullPath("..\\HotelRecommender\\HotelRecommenderCollab.zip");
+        private static string MLNetModelPath = Path.GetFullPath("../HotelRecommender/HotelRecommenderCollab.zip");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 
