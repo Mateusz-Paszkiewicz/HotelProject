@@ -1,43 +1,45 @@
 ﻿@model List<(Hotel Hotel, double HotelRating)>
 
-<h1>We have found these hotels, just for you!</h1>
+<div style="background-color:#65cbeb" class="table-container">
+    <h1 style="text-align:center">We have found these hotels just for you!</h1>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Hotel ID</th>
-            <th>Country</th>
-            <th>City</th>
-            <th>Distance to Center</th>
-            <th>Distance to POI</th>
-            <th>POI</th>
-            <th>Price</th>
-            <th>Price per Night</th>
-            <th>Stars</th>
-            <th>Accommodation Type</th>
-            <th>Is Offer</th>
-            <th>Offer</th>
-            <th>Predicted rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Hotel.Id</td>
-                <td>@item.Hotel.Country</td>
-                <td>@item.Hotel.City</td>
-                <td>@item.Hotel.DistanceToCenter</td>
-                <td>@item.Hotel.DistanceToPOI</td>
-                <td>@item.Hotel.POI</td>
-                <td>@item.Hotel.Price</td>
-                <td>@item.Hotel.PriceNight</td>
-                <td>@item.Hotel.Stars</td>
-                <td>@item.Hotel.AccommodationType</td>
-                <td>@(item.Hotel.IsOffer ? "Yes" : "No")</td>
-                <td>@item.Hotel.Offer</td>
-                <td>@item.HotelRating</td>
+                <th>Hotel ID</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Distance to Center</th>
+                <th>Distance to POI</th>
+                <th>POI</th>
+                <th>Price</th>
+                <th>Price per Night</th>
+                <th>Stars</th>
+                <th>Accommodation Type</th>
+                <th>Is Offer</th>
+                <th>Offer</th>
+                <th>Predicted rating</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr onclick="location.href='/Hotel/Details/@item.Hotel.Id';" style="cursor: pointer;">
+                    <td>@item.Hotel.Id</td>
+                    <td>@item.Hotel.Country</td>
+                    <td>@item.Hotel.City</td>
+                    <td>@item.Hotel.DistanceToCenter</td>
+                    <td>@item.Hotel.DistanceToPOI</td>
+                    <td>@item.Hotel.POI</td>
+                    <td>@item.Hotel.Price</td>
+                    <td>@item.Hotel.PriceNight</td>
+                    <td>@item.Hotel.Stars</td>
+                    <td>@item.Hotel.AccommodationType</td>
+                    <td>@(item.Hotel.IsOffer ? "Yes" : "No")</td>
+                    <td>@item.Hotel.Offer</td>
+                    <td>@item.HotelRating</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,25 +1,27 @@
 ﻿@model X.PagedList.IPagedList<Hotel>
 
-@if (Model.HasPreviousPage)
-{
-    <a href="@Url.Action("Index", new { page = 1, pageSize = Model.PageSize })" class="btn btn-secondary" style="margin: 5px">First</a>
-    <a href="@Url.Action("Index", new { page = Model.PageNumber - 1, pageSize = Model.PageSize })" class="btn btn-secondary" style="margin: 5px">Previous</a>
-}
-else
-{
-    <button class="btn btn-secondary" style="margin: 5px" disabled>First</button>
-    <button class="btn btn-secondary" style="margin: 5px" disabled>Previous</button>
-}
+<div class="pager-container">
+    @if (Model.HasPreviousPage)
+    {
+        <button onclick="location.href='@Url.Action("Index", new { page = 1, pageSize = Model.PageSize })'" class="pager-btn">First</button>
+        <button onclick="location.href='@Url.Action("Index", new { page = Model.PageNumber - 1, pageSize = Model.PageSize })'" class="pager-btn">Previous</button>
+    }
+    else
+    {
+        <button class="pager-btn" disabled>First</button>
+        <button class="pager-btn" disabled>Previous</button>
+    }
 
-<span>Page @Model.PageNumber of @Model.PageCount</span>
+    <span class="pager-info">Page @Model.PageNumber of @Model.PageCount</span>
 
-@if (Model.HasNextPage)
-{
-    <a href="@Url.Action("Index", new { page = Model.PageNumber + 1, pageSize = Model.PageSize })" class="btn btn-primary" style="margin: 5px">Next</a>
-    <a href="@Url.Action("Index", new { page = Model.PageCount, pageSize = Model.PageSize })" class="btn btn-primary" style="margin: 5px">Last</a>
-}
-else
-{
-    <button class="btn btn-primary" style="margin: 5px" disabled>Next</button>
-    <button class="btn btn-primary" style="margin: 5px" disabled>Last</button>
-}
+    @if (Model.HasNextPage)
+    {
+        <button onclick="location.href='@Url.Action("Index", new { page = Model.PageNumber + 1, pageSize = Model.PageSize })'" class="pager-btn">Next</button>
+        <button onclick="location.href='@Url.Action("Index", new { page = Model.PageCount, pageSize = Model.PageSize })'" class="pager-btn">Last</button>
+    }
+    else
+    {
+        <button class="pager-btn" disabled>Next</button>
+        <button class="pager-btn" disabled>Last</button>
+    }
+</div>

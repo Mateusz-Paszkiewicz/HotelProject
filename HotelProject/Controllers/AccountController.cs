@@ -64,12 +64,14 @@ namespace HotelProject.Controllers
                 return View(userModel);
             }
 
-            // THIS IS A WORKAROUND
-            var user = _context.Users.FirstOrDefault(h => h.Id == "");
+            // THIS IS A WORKAROUND (not used now btw ;d)
+            //var user = _context.Users.FirstOrDefault(h => h.Id == "009adf28-bdc3-47ae-ab0d-df272291595c");
+            var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, false);
+            //await _signInManager.SignInAsync(user, false, null);
 
-            //var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, false);
-            await _signInManager.SignInAsync(user, false, null);
-
+            
+            // THIS IS THE END OF WORKAROUND
+            //if (_signInManager.IsSignedIn(User))
             if (result.Succeeded)
             {
                 if (string.IsNullOrEmpty(returnUrl))

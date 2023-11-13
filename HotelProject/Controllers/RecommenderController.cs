@@ -45,6 +45,8 @@ namespace HotelProject.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var hotels = _context.Hotels.OrderBy(h => h.Id).ToList();
             var hotelRatings = new List<(Hotel Hotel, float PredictedRating)>();
+            var topRecommendedHotels = new List<(Hotel Hotel, float PredictedRating)>();
+            var finalPredictedRatings = new List<(Hotel Hotel, double HotelRating)>();
 
             foreach (var h in hotels)
             {
@@ -59,19 +61,29 @@ namespace HotelProject.Controllers
                 hotelRatings.Add((h, result.Score));
             }
 
-            var topRecommendedHotels = hotelRatings.OrderByDescending(r => r.PredictedRating).Take(30).ToList();
+            if(!string.IsNullOrEmpty(hotelPreferences.City))
+            {
+                topRecommendedHotels = hotelRatings
+                    .Where(r => r.Hotel.City == hotelPreferences.City)
+                    .ToList();
+            } else
+            {
+                topRecommendedHotels = hotelRatings
+                    .ToList();
+            }
 
-            var finalPredictedRatings = new List<(Hotel Hotel, double HotelRating)>();
+            topRecommendedHotels = topRecommendedHotels.OrderByDescending(r => r.PredictedRating).Take(30).ToList();
 
             foreach (var item in topRecommendedHotels)
             {
-                var ratingContentBased = 10 - (Math.Abs(hotelPreferences.Price - (item.Hotel.Price/item.Hotel.PriceNight))) * 0.01
-                                            - (Math.Abs(hotelPreferences.Stars - item.Hotel.Stars)) * 1
-                                            - (Math.Abs(hotelPreferences.DistanceToCenter - item.Hotel.DistanceToCenter)) * 0.01
-                                            - (Math.Abs(hotelPreferences.DistanceToPOI - item.Hotel.DistanceToPOI)) * 0.01;
-
+                var ratingContentBased = 10 - (Math.Abs(hotelPreferences.Price - (item.Hotel.Price/item.Hotel.PriceNight))) * 0.015
+                                            - (Math.Abs(hotelPreferences.Stars - item.Hotel.Stars)) * 1.5
+                                            - (Math.Abs(hotelPreferences.DistanceToCenter - item.Hotel.DistanceToCenter)) * 0.015
+                                            - (Math.Abs(hotelPreferences.DistanceToPOI - item.Hotel.DistanceToPOI)) * 0.01
+                                            - (hotelPreferences.AccommodationType == item.Hotel.AccommodationType ? 2 : -1);
+                
                 var finalPredictedRating = (item.PredictedRating + ratingContentBased) / 2;
-                finalPredictedRatings.Add((item.Hotel, finalPredictedRating));
+                finalPredictedRatings.Add((item.Hotel, (double)finalPredictedRating));
             }
 
             finalPredictedRatings = finalPredictedRatings.OrderByDescending(r => r.HotelRating).Take(5).ToList();

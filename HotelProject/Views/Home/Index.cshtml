@@ -1,8 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to Hotel Recommender";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="welcome-container">
+    <h2>@ViewData["Title"]</h2>
+
+    <p>
+        Welcome to Hotel Recommender! Whether you're planning your next vacation or a business trip,
+        we're here to help you find the perfect accommodation. Explore our recommendations tailored just for you.
+        Start your journey with us and make every stay unforgettable.
+    </p>
+
+    <p>
+        Search any hotel in our database under <a href="/hotel">/Hotel</a>, or get a customized recommendation under <a href="/recommender">/Recommender</a>!
+    </p>
+
+    <p>
+        Happy travels!
+    </p>
 </div>
