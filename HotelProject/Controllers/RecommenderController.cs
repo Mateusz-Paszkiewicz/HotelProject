@@ -83,7 +83,7 @@ namespace HotelProject.Controllers
                                             - (hotelPreferences.AccommodationType == item.Hotel.AccommodationType ? 2 : -1);
                 
                 var finalPredictedRating = (item.PredictedRating + ratingContentBased) / 2;
-                finalPredictedRatings.Add((item.Hotel, (double)finalPredictedRating));
+                finalPredictedRatings.Add((item.Hotel, Math.Min(Math.Round((double)finalPredictedRating,1), 10)));
             }
 
             finalPredictedRatings = finalPredictedRatings.OrderByDescending(r => r.HotelRating).Take(5).ToList();

@@ -14,17 +14,15 @@
                 <th>Distance To point of interest</th>
                 <th>Point of interest</th>
                 <th>Price</th>
-                <th>Price Night</th>
                 <th>Stars</th>
                 <th>Accommodation Type</th>
-                <th>Is Offer</th>
                 <th>Offer</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var hotel in Model)
             {
-                <tr onclick="location.href='/Hotel/Details/@hotel.Id';">
+                <tr onclick="location.href='/Hotel/Details/@hotel.Id';" class="row-hotels">
                     <td>@hotel.Id</td>
                     <td>@hotel.Country</td>
                     <td>@hotel.City</td>
@@ -32,10 +30,8 @@
                     <td>@hotel.DistanceToPOI</td>
                     <td>@hotel.POI</td>
                     <td>@hotel.Price</td>
-                    <td>@hotel.PriceNight</td>
                     <td>@hotel.Stars</td>
                     <td>@hotel.AccommodationType</td>
-                    <td>@hotel.IsOffer</td>
                     <td>@hotel.Offer</td>
                 </tr>
             }

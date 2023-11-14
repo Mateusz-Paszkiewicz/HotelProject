@@ -9,14 +9,12 @@
                 <th>Hotel ID</th>
                 <th>Country</th>
                 <th>City</th>
-                <th>Distance to Center</th>
-                <th>Distance to POI</th>
-                <th>POI</th>
+                <th>Distance to center</th>
+                <th>Distance to the point of interest</th>
+                <th>Point of interest</th>
                 <th>Price</th>
-                <th>Price per Night</th>
                 <th>Stars</th>
                 <th>Accommodation Type</th>
-                <th>Is Offer</th>
                 <th>Offer</th>
                 <th>Predicted rating</th>
             </tr>
@@ -24,7 +22,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr onclick="location.href='/Hotel/Details/@item.Hotel.Id';" style="cursor: pointer;">
+                <tr onclick="location.href='/Hotel/Details/@item.Hotel.Id';" style="cursor: pointer;" class="row-hotels">
                     <td>@item.Hotel.Id</td>
                     <td>@item.Hotel.Country</td>
                     <td>@item.Hotel.City</td>
@@ -32,10 +30,8 @@
                     <td>@item.Hotel.DistanceToPOI</td>
                     <td>@item.Hotel.POI</td>
                     <td>@item.Hotel.Price</td>
-                    <td>@item.Hotel.PriceNight</td>
                     <td>@item.Hotel.Stars</td>
                     <td>@item.Hotel.AccommodationType</td>
-                    <td>@(item.Hotel.IsOffer ? "Yes" : "No")</td>
                     <td>@item.Hotel.Offer</td>
                     <td>@item.HotelRating</td>
                 </tr>
