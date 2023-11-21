@@ -79,17 +79,15 @@ namespace HotelProject.Controllers
                 _context.HotelRatings.Add(hotelRating);
             }
 
-            int savedChanges = _context.SaveChanges();
-
-            if (savedChanges > 0)
+            try
             {
-                // SaveChanges was successful, return a JSON response with success flag
+                _context.SaveChanges();
+
                 return Json(new { success = true, message = "Rating submitted successfully" });
             }
-            else
+            catch (Exception ex)
             {
-                // SaveChanges was not successful, return a JSON response with an error message
-                return Json(new { success = false, message = "Failed to submit rating" });
+                return Json(new { success = false, message = "Failed to submit rating", error = ex.Message });
             }
         }
     }

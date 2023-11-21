@@ -34,12 +34,6 @@
                 url: '/Hotel/Rate',
                 type: 'POST',
                 data: { hotelId: @hotelId, rating: ratingValue },
-                success: function (data) {
-                    $("#successMessage").text("Rating updated successfully").show();
-                },
-                //error: function (xhr, textStatus, errorThrown) {
-
-                //}
             });
         });
     });
