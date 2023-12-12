@@ -22,12 +22,6 @@ namespace HotelProject.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            /*var user = _context.Users.FirstOrDefault(h => h.Id == "009adf28-bdc3-47ae-ab0d-df272291595c");
-            Console.Write(user.Email);
-            user.PasswordHash = null;
-
-            _context.SaveChanges();*/
-
             return View();
         }
 
@@ -76,8 +70,8 @@ namespace HotelProject.Controllers
 
             foreach (var item in topRecommendedHotels)
             {
-                var ratingContentBased = 10 - (Math.Abs(hotelPreferences.Price - (item.Hotel.Price/item.Hotel.PriceNight))) * 0.015
-                                            - (Math.Abs(hotelPreferences.Stars - item.Hotel.Stars)) * 1.5
+                var ratingContentBased = 10 - (Math.Abs(hotelPreferences.Price - (item.Hotel.Price/item.Hotel.PriceNight))) * 0.0125
+                                            - (Math.Abs(hotelPreferences.Stars - item.Hotel.Stars)) * 1.25
                                             - (Math.Abs(hotelPreferences.DistanceToCenter - item.Hotel.DistanceToCenter)) * 0.015
                                             - (Math.Abs(hotelPreferences.DistanceToPOI - item.Hotel.DistanceToPOI)) * 0.01
                                             - (hotelPreferences.AccommodationType == item.Hotel.AccommodationType ? 2 : -1);

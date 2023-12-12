@@ -29,28 +29,12 @@ namespace HotelProject.Controllers
 
         public IActionResult Details(int id)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
-            {
-                return View();
-            }
-
             var hotelId = _context.Hotels.FirstOrDefault(h => h.Id == id);
 
             if (hotelId == null)
             {
                 return NotFound();
             }
-
-            var userHotelInteraction = new UserHotelInteraction
-            {
-                HotelId = id,
-                UserId = userId,
-                TimeStamp = DateTime.Now
-            };
-
-            _context.UserHotelInteractions.Add(userHotelInteraction);
-            _context.SaveChanges();
 
             return View(hotelId);
         }

@@ -10,7 +10,6 @@ namespace HotelProject.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<UserHotelInteraction> UserHotelInteractions { get; set; }
         public DbSet<HotelRating> HotelRatings { get; set; }
 
         public UserDbContext(DbContextOptions options)
@@ -32,18 +31,6 @@ namespace HotelProject.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<UserHotelInteraction>()
-                .HasKey(uhi => uhi.Id);
-            modelBuilder.Entity<UserHotelInteraction>()
-                .HasOne(uhi => uhi.Hotel)
-                .WithMany()
-                .HasForeignKey(uhi => uhi.HotelId);
-            modelBuilder.Entity<UserHotelInteraction>()
-                .HasOne(uhi => uhi.User)
-                .WithMany()
-                .HasForeignKey(uhi => uhi.UserId);
-
 
             modelBuilder.Entity<HotelRating>()
                 .HasKey(uhi => uhi.Id);

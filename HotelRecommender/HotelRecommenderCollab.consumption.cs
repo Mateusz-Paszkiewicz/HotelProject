@@ -37,18 +37,6 @@ namespace HotelRecommender
         #region model output class
         public class ModelOutput
         {
-            [ColumnName(@"Id")]
-            public float Id { get; set; }
-
-            [ColumnName(@"HotelId")]
-            public uint HotelId { get; set; }
-
-            [ColumnName(@"UserId")]
-            public uint UserId { get; set; }
-
-            [ColumnName(@"RatingValue")]
-            public float RatingValue { get; set; }
-
             [ColumnName(@"Score")]
             public float Score { get; set; }
 
