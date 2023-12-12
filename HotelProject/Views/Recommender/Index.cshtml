@@ -1,40 +1,54 @@
 ﻿@model HotelProject.Models.HotelPreferencesViewModel
 
-
-
 <form asp-controller="Recommender" asp-action="ProcessHotelPreferences" class="form-container-recommender" method="post">
-    <h1 style="padding-bottom:30px"> Tell us more about what you are looking for </h1>
+    <h1 style="padding-bottom:30px"> Tell us more about what you are looking for. </h1>
 
-    <div class="form-group-recommender">
-        <label asp-for="City">City:</label>
-        <input asp-for="City" class="form-control" />
-    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group-recommender">
+                <label asp-for="City">City:</label>
+                <input asp-for="City" class="form-control" />
+            </div>
 
-    <div class="form-group-recommender">
-        <label asp-for="AccommodationType">AccommodationType:</label>
-        <input asp-for="AccommodationType" class="form-control" />
-    </div>
+            <div class="form-group-recommender">
+                <label asp-for="AccommodationType">Accommodation type:</label>
+                <select asp-for="AccommodationType" class="form-control">
+                    <option value="">Any</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Hostel">Hostel</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Guest House">Guest House</option>
+                    <option value="Villa">Villa</option>
+                    <option value="Bed And Breakfast">Bed And Breakfast</option>
+                    <option value="Inn">Inn</option>
+                    <option value="Vacation Home Condo">Vacation Home Condo</option>
+                    <option value="Apart-Hotel">Apart-Hotel</option>
+                </select>
+            </div>
 
-    <div class="form-group-recommender">
-        <label asp-for="Price">Price:</label>
-        <input asp-for="Price" class="form-control" />
-    </div>
+            <div class="form-group-recommender">
+                <label asp-for="Price">Price per night ($):</label>
+                <input type="number" asp-for="Price" class="form-control" min="0" />
+            </div>
+        </div>
 
-    <div class="form-group-recommender">
-        <label asp-for="DistanceToCenter">Distance to Center:</label>
-        <input asp-for="DistanceToCenter" class="form-control" />
-    </div>
+        <div class="col-md-6">
+            <div class="form-group-recommender">
+                <label asp-for="DistanceToCenter">Distance to center (miles):</label>
+                <input type="number" asp-for="DistanceToCenter" class="form-control" step="0.1" min="0" />
+            </div>
 
-    <div class="form-group-recommender">
-        <label asp-for="DistanceToPOI">Distance to Points of Interest:</label>
-        <input asp-for="DistanceToPOI" class="form-control" />
-    </div>
+            <div class="form-group-recommender">
+                <label asp-for="DistanceToPOI">Distance to points of interest (miles):</label>
+                <input type="number" asp-for="DistanceToPOI" class="form-control" step="0.1" min="0" />
+            </div>
 
-    <div class="form-group-recommender">
-        <label asp-for="Stars">Stars:</label>
-        <input asp-for="Stars" class="form-control" />
+            <div class="form-group-recommender">
+                <label asp-for="Stars">Stars (1-5):</label>
+                <input type="number" asp-for="Stars" class="form-control" min="1" max="5" />
+            </div>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
