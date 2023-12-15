@@ -47,7 +47,7 @@ namespace HotelProject.Controllers
                 var predictionInput = new HotelRecommenderCollab.ModelInput()
                 {
                     HotelId = h.Id,
-                    UserId = /*userId*/ @"009adf28-bdc3-47ae-ab0d-df272291595c",
+                    UserId = userId /*@"009adf28-bdc3-47ae-ab0d-df272291595c"*/,
                 };
 
                 var result = HotelRecommenderCollab.Predict(predictionInput);
@@ -66,7 +66,8 @@ namespace HotelProject.Controllers
                     .ToList();
             }
 
-            topRecommendedHotels = topRecommendedHotels.OrderByDescending(r => r.PredictedRating).Take(30).ToList();
+            if (!topRecommendedHotels.OrderByDescending(r => r.PredictedRating).Take(30).Any(r => float.IsNaN(r.PredictedRating)))
+                topRecommendedHotels = topRecommendedHotels.OrderByDescending(r => r.PredictedRating).Take(30).ToList();
 
             foreach (var item in topRecommendedHotels)
             {
@@ -75,8 +76,12 @@ namespace HotelProject.Controllers
                                             - (Math.Abs(hotelPreferences.DistanceToCenter - item.Hotel.DistanceToCenter)) * 0.015
                                             - (Math.Abs(hotelPreferences.DistanceToPOI - item.Hotel.DistanceToPOI)) * 0.01
                                             - (hotelPreferences.AccommodationType == item.Hotel.AccommodationType ? 2 : -1);
-                
-                var finalPredictedRating = (item.PredictedRating + ratingContentBased) / 2;
+
+                var finalPredictedRating = ratingContentBased;
+
+                if (!float.IsNaN(item.PredictedRating))
+                    finalPredictedRating = (item.PredictedRating + ratingContentBased) / 2;
+
                 finalPredictedRatings.Add((item.Hotel, Math.Min(Math.Round((double)finalPredictedRating,1), 10)));
             }
 
